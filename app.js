@@ -59,7 +59,7 @@ app.get(`/karyawan/tambah`,(req, res)=>{
   res.render(`karyawan/form_tambah`)
 })
 
-app.post(`/karyawan/proses-insert`,(req, res)=>{
+app.post(`/karyawan/proses_insert`,(req, res)=>{
   res.send(req.body)
 })
 
