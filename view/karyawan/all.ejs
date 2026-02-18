@@ -1,0 +1,35 @@
+ini adalah view/karyawan/all
+<%#= JSON.stringifty(data_karyawan) %>
+
+<!-- Teknik buka tutup tag -->
+ <table border="1">
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Gender</th>
+            <th>aksi</th>
+        </tr>
+     </thead>
+     <tbody>
+         <% for( let i = 0; i < data_karyawan.length; i++ ) { %>
+            <tr>
+            <td><%= data_karyawan[i].nama %></td>
+            <td><%= data_karyawan[i].jenis_kelamin%></td>
+            <td syle="padding: 5px"td>
+                <a href="/karyawan/detail/<%= data_karyawan[i].id%>">
+                    <button>Detail</button>
+                </a>
+            </td>
+            <td syle="padding: 5px"td>
+                <a href="/karyawan/hapus/<%= data_karyawan[i].id%>"
+                onclick="return confirm('hapus karyawan <%= data_karyawan[i].nama %> ?')">
+                    <button>Hapus</button>
+                </a>
+            </td>
+            </tr>
+        <% } %>
+     </tbody>
+        
+ </table>
+   
+ 

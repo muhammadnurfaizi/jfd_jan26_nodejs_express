@@ -1,0 +1,30 @@
+<h1>input karyawan baru</h1>
+<hr>
+
+<form action="/karyawan/proses_insert" method="post">
+<div style="margin-bottom: 10px;">
+    <label for="">Nama</label>
+    <input type="text" name="form_nama">
+</div>
+
+<div style="margin-top: 10px;">
+    <label for="">Tanggal Lahir</label>
+    <input type="date" name="form_tanggal_lahir">
+</div>
+
+<div style="margin-top: 10px;">
+    <label for="">Jenis kelamin</label>
+    <select name="form_gender">
+        <option value="">--pilih--</option>
+        <option value="L">Laki</option>
+        <option value="P">Perempuan</option>
+    </select>
+</div>
+
+<div style="margin-bottom: 10px;">
+    <label for="" style="vertical-align: top;"></label>
+    <textarea name="form_alamat" id=""></textarea>
+</div>
+
+<button type="submit">Simpan</button>
+</form>

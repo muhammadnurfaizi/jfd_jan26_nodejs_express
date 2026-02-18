@@ -1,0 +1,14 @@
+<h1>Profile karyawan</h1>
+<% if (Profile_Karyawan.length > 0) { %>
+<ul>
+    <li>Nama: <%= Profile_Karyawan[0].nama %></li>
+    <li>Kelahiran: <%= Profile_Karyawan[0].tanggal_lahir %></li>
+    <li>Gender: <%= Profile_Karyawan[0].jenis_kelamin %></li>
+    <li>Alamat: <%= Profile_Karyawan[0].alamat %></li>
+    <li>Agama: <%= Profile_Karyawan[0].agama_id %></li>
+    <li>Jabatan: <%= Profile_Karyawan[0].jabatan_id %></li>
+</ul>
+
+<% } else { %>
+    <h2>Profile tidak di temukan</h2>
+<%} %>
