@@ -49,18 +49,31 @@ app.get(`/karyawan/detail/:id_kry`, async (req, res)=>{
 app.get(`/karyawan/hapus/:id_kry`, async (req, res)=>{
   let id_kry = req.params.id_kry
   let proses_hapus =  await require(`./model/m_karyawan`).Hapus_1_karyawan(id_kry)
-  if (proses_hapus.effectedRows > 0 ){
+  if (proses_hapus.affectedRows > 0 ){
   res.redirect(`/karyawan`)
   }
 
 })
 
-app.get(`/karyawan/tambah`,(req, res)=>{
-  res.render(`karyawan/form_tambah`)
+
+app.get(`/karyawan/tambah`,async (req, res)=>{
+  res.render(`karyawan/form_tambah`, {
+    req:req,
+    agama: await require(`./model/m_agama`).get_semua_agama()
+  })
 })
 
-app.post(`/karyawan/proses_insert`,(req, res)=>{
-  res.send(req.body)
+app.post(`/karyawan/proses_insert`,async (req, res)=>{
+    try {
+      let proses_insert =await require(`./model/m_karyawan`).Insert_1_karyawan(req)
+      if (proses_insert.affectedRows > 0 ){
+          res.redirect(`/karyawan?succes_msg=berhasil input karyawan baru a/n` + req.body.form_nama)
+      }
+    } catch (error) {
+      console.log(error);
+      
+      res.redirect(`/karyawan/tambah?error_msg=`+ error.errno +':' + error.sqlMessage)
+    }
 })
 
 app.listen(port, () => {

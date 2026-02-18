@@ -1,6 +1,9 @@
 <h1>input karyawan baru</h1>
 <hr>
 
+<% if (req.query.error_msg) { %>
+    <h3><%=req.query.error_msg%></h3>
+<% } %>
 <form action="/karyawan/proses_insert" method="post">
 <div style="margin-bottom: 10px;">
     <label for="">Nama</label>
@@ -22,9 +25,20 @@
 </div>
 
 <div style="margin-bottom: 10px;">
-    <label for="" style="vertical-align: top;"></label>
-    <textarea name="form_alamat" id=""></textarea>
+    <label for="" style="vertical-align: top;">Alamat</label>
+    <textarea name="form_alamat"></textarea>
 </div>
 
+<div style="margin-top: 10px;">
+    <label for="">Agama</label>
+    <select name="form_agama">
+        <option value="" selected>--pilih--</option>
+        <% for( let i = 0; i < agama.length; i++ ) { %>
+            <option value="<%= agama[i].id %>"><%= agama[i].nama %></option>
+        <% } %>
+    </select>
+</div>
+
+<br>
 <button type="submit">Simpan</button>
 </form>
