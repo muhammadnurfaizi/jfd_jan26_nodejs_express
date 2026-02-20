@@ -1,6 +1,7 @@
 const express   = require('express')
 const { log, profile } = require('node:console')
 const app       = express()
+const moment    = require(`moment`)
 const port      = 3000
 
 app.use( express.urlencoded({extended:false}))
@@ -74,6 +75,16 @@ app.post(`/karyawan/proses_insert`,async (req, res)=>{
       
       res.redirect(`/karyawan/tambah?error_msg=`+ error.errno +':' + error.sqlMessage)
     }
+})
+
+app.get(`/karyawan/edit/:id_kry`, async (req,res)=>{
+  let id_kry = req.params.id_kry
+  res.render(`karyawan/form_edit`,{
+    req: req,
+    moment: moment,
+    agama: await require(`./model/m_agama`).get_semua_agama(),
+profile_karyawan: await require(`./model/m_karyawan`).get_1_karyawan(id_kry)
+  })
 })
 
 app.listen(port, () => {
